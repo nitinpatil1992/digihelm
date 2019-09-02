@@ -3,7 +3,7 @@ name: verso
 deployment:
   image:
     repository: patil16nit/microdigi-reverse
-    tag: v1
+    tag: v3
     pullPolicy: IfNotPresent
 
   replicaCount: 1
