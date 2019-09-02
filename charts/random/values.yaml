@@ -13,7 +13,7 @@ deployment:
       value : http://verso-svc.diginex.svc.cluster.local/reverse
     - name  : redis_host
       key   : REDIS_HOST
-      value : random-redis:6379
+      value : localhost:6379
   resources:
     limits:
       cpu: 200m
