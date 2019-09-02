@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.name }}-cm
+  namespace: {{ .Release.Namespace }}
+  labels:
+    cm: {{ .Values.name }}
+    chart: {{ template "random.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  {{- range .Values.deployment.environment }}
+    {{ .name }} : {{ .value }}
+  {{- end }}

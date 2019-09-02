@@ -1,0 +1,33 @@
+name: random
+
+deployment:
+  image:
+    repository: patil16nit/microdigi-random
+    tag: "v1"
+    pullPolicy: IfNotPresent
+
+  replicaCount: 1
+  environment:
+    - name  : reverse_api_host
+      key   : REVERSE_API_URI
+      value : http://verso-svc.diginex.svc.cluster.local/reverse
+    - name  : redis_host
+      key   : REDIS_HOST
+      value : random-redis:6379
+  resources:
+    limits:
+      cpu: 200m
+      memory: 128Mi
+    requests:
+      cpu: 200m
+      memory: 128Mi
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+  path: /
+  hosts:
+    - api.diginex.com
+  tls: []
